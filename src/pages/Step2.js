@@ -1,16 +1,15 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useData } from "./DataContext";
 import Typography from "@material-ui/core/Typography";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
-import * as yup from "yup";
-
-import { useData } from "../context/DataContext";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { MainContainer } from "../components/MainContainer";
-import { Form } from "../components/Form";
-import { Input } from "../components/Input";
+import { Form } from "./components/Form";
+import { Input } from "./components/Input";
+import * as yup from "yup";
 
 const schema = yup.object().shape({
   firstName: yup
@@ -24,7 +23,7 @@ const schema = yup.object().shape({
 });
 
 export const Step1 = () => {
-  const { setValues, data } = useData({});
+  const { setValues, data } = useData();
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm({
     defaultValues: { firstName: data.firstName, lastName: data.lastName },
